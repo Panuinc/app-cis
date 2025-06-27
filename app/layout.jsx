@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/style/globals.css";
+import { Providers } from "@/components/other/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +19,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-       <div className="flex items-center just"></div>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <div className="flex items-center justify-center w-full h-screen p-2 gap-2 border-2 border-dark border-dashed">
+            {children}
+          </div>
+        </body>
+      </html>
+    </Providers>
   );
 }
