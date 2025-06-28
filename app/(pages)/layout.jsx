@@ -99,7 +99,7 @@ export default function PagesLayout({ children }) {
                 />
               </div>
               <div className="flex items-center justify-center w-full h-full p-2 gap-2">
-                Channkorn Engineer
+                Admin Channkorn
               </div>
             </div>
           </div>
