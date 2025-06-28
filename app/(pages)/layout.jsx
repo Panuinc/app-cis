@@ -262,7 +262,7 @@ export default function PagesLayout({ children }) {
           </div>
         </div>
         <div className="flex flex-col items-center justify-start w-full xl:w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-default overflow-auto">
-          1
+          {children}
         </div>
       </div>
     </div>
