@@ -49,7 +49,7 @@ export default function PagesLayout({ children }) {
             />
           </div>
           <div className="flex flex-col items-start justify-center xl:justify-start w-full h-full p-2">
-            <span> Channkorn Engineer</span>
+            <span> Channkorn{""}Engineer</span>
             <span className="text-xs text-dark/50"> Internal System</span>
           </div>
         </div>
