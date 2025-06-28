@@ -135,76 +135,76 @@ export default function PagesLayout({ children }) {
         </div>
 
         {isMobile && isMobileMenuOpen && (
-          <div className="xl:hidden fixed inset-0 z-50 mt-24 bg-white overflow-auto">
-            <div className="flex flex-col items-center justify-center w-full p-2 gap-2">
-              <div className="flex flex-col items-start justify-center w-full p-2 gap-2 border-b-2 border-default">
+          <div className="xl:hidden fixed inset-0 z-50 p-2 mt-24 bg-white border-2 border-danger border-dashed overflow-auto">
+            <div className="flex flex-col items-center justify-center w-full p-2 gap-2 border-2 border-warning border-dashed">
+              <div className="flex flex-col items-start justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
                 <Link
                   href="https://channakorn.co.th/"
-                  className="flex items-center justify-start w-full h-full p-2 gap-2 hover:border-b-2 hover:border-default"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  target="_blank"
+                  className="flex items-center justify-center h-full p-2 gap-2 hover:border-b-2 hover:border-default"
                 >
                   <Building /> Channakorn Home
                 </Link>
                 <Link
                   href="http://49.0.64.242:8023/Main/"
-                  className="flex items-center justify-start w-full h-full p-2 gap-2 hover:border-b-2 hover:border-default"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  target="_blank"
+                  className="flex items-center justify-center h-full p-2 gap-2 hover:border-b-2 hover:border-default"
                 >
                   <Briefcase /> Channakorn CNE
                 </Link>
                 <Link
                   href="http://cnecloud01.myqnapcloud.com:8011/cgi-bin/"
-                  className="flex items-center justify-start w-full h-full p-2 gap-2 hover:border-b-2 hover:border-default"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  target="_blank"
+                  className="flex items-center justify-center h-full p-2 gap-2 hover:border-b-2 hover:border-default"
                 >
                   <Server /> Channakorn Clound
                 </Link>
                 <Link
                   href="http://49.0.64.242:8088/LoginERS/login.aspx"
-                  className="flex items-center justify-start w-full h-full p-2 gap-2 hover:border-b-2 hover:border-default"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  target="_blank"
+                  className="flex items-center justify-center h-full p-2 gap-2 hover:border-b-2 hover:border-default"
                 >
                   <CalendarHeart /> Channakorn Leave
                 </Link>
               </div>
 
-              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 bg-white">
-                <div className="flex flex-row items-center justify-center w-full p-2 gap-2">
-                  <div className="flex items-center justify-center h-full p-2 gap-2">
+              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-danger border-dashed bg-white">
+                <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+                  <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                     <LayoutDashboard />
                   </div>
-                  <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                  <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                     Dashboard
                   </div>
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-full gap-2">
-                  <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2">
-                    <div className="flex items-center justify-center h-full p-2 gap-2">
+                  <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+                    <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                       <User />
                     </div>
-                    <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                    <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                       Human Resource
                     </div>
-                    <div className="flex items-center justify-center h-full p-2 gap-2 rounded-full bg-default ">
+                    <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default ">
                       <ChevronDown />
                     </div>
                   </div>
                   <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
-                    <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                    <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                       Role
                     </div>
-                    <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                    <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                       Branch
                     </div>
                   </div>
                 </div>
 
-                <div className="flex flex-row items-center justify-center w-full p-2 gap-2">
-                  <div className="flex items-center justify-center h-full p-2 gap-2">
+                <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+                  <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                     <Key />
                   </div>
-                  <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                  <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                     Logout
                   </div>
                 </div>
@@ -217,49 +217,49 @@ export default function PagesLayout({ children }) {
           <div
             className={`${isMobileMenuOpen ? "hidden xl:flex" : "flex"} ${
               isMobile ? "hidden xl:flex" : "flex"
-            } flex-col items-center justify-between w-[20%] h-full p-2 gap-2 rounded-2xl bg-white overflow-auto`}
+            } flex-col items-center justify-between w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-white overflow-auto`}
           >
-            <div className="flex flex-row items-center justify-center w-full p-2 gap-2">
-              <div className="flex items-center justify-center h-full p-2 gap-2">
+            <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                 <LayoutDashboard />
               </div>
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                 Dashboard
               </div>
             </div>
 
             <div className="flex flex-col items-center justify-center w-full gap-2">
-              <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2">
-                <div className="flex items-center justify-center h-full p-2 gap-2">
+              <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                   <User />
                 </div>
-                <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                   Human Resource
                 </div>
-                <div className="flex items-center justify-center h-full p-2 gap-2 rounded-full bg-default ">
+                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default ">
                   <ChevronDown />
                 </div>
               </div>
               <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
-                <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                   Role
                 </div>
-                <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+                <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                   Branch
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-row items-center justify-center w-full p-2 gap-2">
-              <div className="flex items-center justify-center h-full p-2 gap-2">
+            <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                 <Key />
               </div>
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2">
+              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                 Logout
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-start w-full xl:w-[80%] h-full p-2 gap-2 rounded-2xl bg-default overflow-auto">
+          <div className="flex flex-col items-center justify-start w-full xl:w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-default overflow-auto">
             1
           </div>
         </div>
