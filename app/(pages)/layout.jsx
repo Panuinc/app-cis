@@ -11,7 +11,7 @@ import {
   ChevronDown,
   Key,
   LayoutDashboard,
-  MessageSquareCode,
+  MessageCircleMore,
   Search,
   Server,
   User,
@@ -86,7 +86,7 @@ export default function PagesLayout({ children }) {
               <Bell />
             </div>
             <div className="flex items-center justify-center aspect-square h-full p-2 gap-2 bg-default rounded-full">
-              <MessageSquareCode />
+              <MessageCircleMore />
             </div>
             <div className="flex flex-row items-center justify-center w-96 h-full p-2 gap-2 bg-default rounded-full">
               <div className="flex items-center justify-center aspect-square h-full p-2 gap-2 bg-primary rounded-full relative">
