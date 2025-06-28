@@ -1,15 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Kanit, Nunito } from "next/font/google";
 import "@/style/globals.css";
 import { Providers } from "@/components/other/providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const kanit = Kanit({
   subsets: ["latin"],
+  variable: "--kanit",
+  weight: "300",
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
   subsets: ["latin"],
+  variable: "--nunito",
+  weight: "300",
+  display: "swap",
 });
 
 export const metadata = {
@@ -21,8 +24,11 @@ export default function RootLayout({ children }) {
   return (
     <Providers>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          <div className="flex items-center justify-center w-full h-screen p-2 gap-2 border-2 border-dark border-dashed">
+        <head>
+          <link rel="icon" href="/logoCompany/com-1.png" />
+        </head>
+        <body className={`${nunito.variable} ${kanit.variable} antialiased`}>
+          <div className="flex items-center justify-center w-full h-screen gap-2">
             {children}
           </div>
         </body>

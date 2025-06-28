@@ -22,25 +22,45 @@ export default function UIIndex() {
           <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
             <Input
               name="email"
-              type="email"
-              label="อีเมล"
+              type="text"
+              label="Username"
               labelPlacement="outside"
-              placeholder="your@email.com"
+              placeholder="xxx xxx"
               variant="bordered"
               color="secondary"
-              size="md"
               isClearable
               isRequired
               // onChange={handleChange}
               // validate={(value) => (!value.includes("@") ? "อีเมลไม่ถูกต้อง" : true)}
-              errorMessage="กรุณากรอกอีเมลให้ถูกต้อง"
+              // value={empUserCredential}
+              // errorMessage={errors.roleName}
             />
           </div>
           <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-            4
+            <Input
+              name="Password"
+              type="password"
+              label="Password"
+              labelPlacement="outside"
+              placeholder="xxx xxx"
+              variant="bordered"
+              color="secondary"
+              isClearable
+              isRequired
+              // onChange={handleChange}
+              // validate={(value) => (!value.includes("@") ? "อีเมลไม่ถูกต้อง" : true)}
+              // value={empUserCredential}
+              // errorMessage={errors.roleName}
+            />
           </div>
           <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-            5
+            <Button
+              type="submit"
+              color="primary"
+              className="flex items-center justify-center w-6/12 h-full p-3 gap-2"
+            >
+              Login
+            </Button>
           </div>
         </div>
         <div className="xl:flex hidden flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl">
