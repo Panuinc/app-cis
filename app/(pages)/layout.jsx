@@ -135,8 +135,8 @@ export default function PagesLayout({ children }) {
         </div>
 
         {isMobile && isMobileMenuOpen && (
-          <div className="xl:hidden fixed inset-0 z-50 p-2 mt-24 bg-white border-2 border-danger border-dashed overflow-auto">
-            <div className="flex flex-col items-center justify-center w-full p-2 gap-2 border-2 border-warning border-dashed">
+          <div className="xl:hidden fixed inset-0 z-50 mt-24 bg-white overflow-auto">
+            <div className="flex flex-col items-center justify-center w-full p-2 gap-2 border-4 border-danger">
               <div className="flex flex-col items-start justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
                 <Link
                   href="https://channakorn.co.th/"
@@ -168,7 +168,7 @@ export default function PagesLayout({ children }) {
                 </Link>
               </div>
 
-              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-danger border-dashed bg-white">
+              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed bg-white">
                 <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
                   <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                     <LayoutDashboard />
@@ -190,7 +190,7 @@ export default function PagesLayout({ children }) {
                       <ChevronDown />
                     </div>
                   </div>
-                  <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
+                  <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
                     <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                       Role
                     </div>
@@ -240,7 +240,7 @@ export default function PagesLayout({ children }) {
                   <ChevronDown />
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
+              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
                 <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                   Role
                 </div>
