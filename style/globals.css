@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #EDEDEF;
+  background-color: #ededef;
   color: #21212d;
   font-family: var(--nunito), var(--kanit);
-
   font-size: 14px;
   font-weight: 300;
 }
@@ -16,9 +15,9 @@ body {
 }
 
 .bg-default-100 {
-    background-color: #EDEDEF;
-    border: none;
-    box-shadow: none;
+  background-color: #ededef;
+  border: none;
+  box-shadow: none;
 }
 
 /* ::-webkit-scrollbar {

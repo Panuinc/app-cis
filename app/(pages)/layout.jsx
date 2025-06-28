@@ -7,6 +7,7 @@ import {
   Building,
   CalendarHeart,
   ChevronDown,
+  Key,
   LayoutDashboard,
   MessageSquareCode,
   Search,
@@ -100,7 +101,7 @@ export default function PagesLayout({ children }) {
           </div>
         </div>
         <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-4 border-danger rounded-3xl overflow-auto">
-          <div className="flex flex-col items-center justify-start w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-3xl bg-white overflow-auto">
+          <div className="flex flex-col items-center justify-between w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-white overflow-auto">
             <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
               <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
                 <LayoutDashboard />
@@ -122,7 +123,7 @@ export default function PagesLayout({ children }) {
                   <ChevronDown />
                 </div>
               </div>
-              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark border-dashed">
+              <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
                 <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
                   Role
                 </div>
@@ -131,8 +132,17 @@ export default function PagesLayout({ children }) {
                 </div>
               </div>
             </div>
+
+            <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+                <Key />
+              </div>
+              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+                Logout
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col items-center justify-start w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-3xl bg-default overflow-auto">
+          <div className="flex flex-col items-center justify-start w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-default overflow-auto">
             1
           </div>
         </div>
