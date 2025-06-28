@@ -1,6 +1,8 @@
 "use client";
-import { Input } from "@heroui/react";
 import Link from "next/link";
+import Image from "next/image";
+import { Input } from "@heroui/react";
+import { useState, useEffect } from "react";
 import {
   Bell,
   Briefcase,
@@ -16,8 +18,6 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import Image from "next/image";
-import { useState, useEffect } from "react";
 
 export default function PagesLayout({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
