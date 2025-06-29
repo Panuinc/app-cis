@@ -109,19 +109,19 @@ export default function PagesLayout({ children }) {
         <div key={index} className="w-full flex flex-col items-center gap-2">
           <MenuWrapper href={menu.href}>
             <div
-              className={`flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed ${
+              className={`flex flex-row items-center justify-center w-full h-full p-2 gap-2 ${
                 menu.children ? "cursor-pointer" : ""
               } ${isActive ? "bg-default rounded-full" : ""}`}
               onClick={menu.children ? toggleMenu : undefined}
             >
-              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+              <div className="flex items-center justify-center h-full p-2 gap-2">
                 {menu.icon}
               </div>
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+              <div className="flex items-center justify-start w-full h-full p-2 gap-2">
                 {menu.label}
               </div>
               {menu.children && (
-                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default">
+                <div className="flex items-center justify-center aspect-square h-full p-2 gap-2 rounded-full bg-default">
                   <ChevronDown
                     className={`transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
@@ -140,7 +140,7 @@ export default function PagesLayout({ children }) {
                   <Link
                     key={cIdx}
                     href={child.href}
-                    className={`flex items-center justify-start w-full h-full p-3 gap-2 border-2 border-dark border-dashed ${
+                    className={`flex items-center justify-start w-full h-full p-3 gap-2 ${
                       isChildActive ? "bg-default rounded-full" : ""
                     }`}
                   >
@@ -157,7 +157,7 @@ export default function PagesLayout({ children }) {
   if (!isClient) return null;
 
   return (
-    <div className="flex flex-col items-center justify-start w-full h-full bg-default">
+    <div className="flex flex-col items-center justify-start w-full h-full bg-white">
       <div className="flex flex-row items-start justify-between w-full p-2 gap-2 bg-white">
         <div className="flex flex-row items-center justify-center h-full gap-2">
           <div className="flex items-start justify-center w-full h-full p-2 gap-2">
@@ -257,7 +257,7 @@ export default function PagesLayout({ children }) {
       {isMobile && isMobileMenuOpen && (
         <div className="xl:hidden fixed inset-0 z-50 mt-24 bg-white overflow-auto">
           <div className="flex flex-col items-center justify-center w-full p-2 gap-2 border-4 border-danger">
-            <div className="flex flex-col items-start justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+            <div className="flex flex-col items-start justify-center w-full p-2 gap-2">
               <Link
                 href="https://channakorn.co.th/"
                 target="_blank"
@@ -288,22 +288,22 @@ export default function PagesLayout({ children }) {
               </Link>
             </div>
 
-            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed bg-white">
+            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 bg-white">
               {renderSidebarMenu()}
             </div>
           </div>
         </div>
       )}
 
-      <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-4 border-danger rounded-3xl overflow-auto">
+      <div className="flex flex-row items-center justify-center w-full h-full gap-2 border-2 border-default rounded-3xl overflow-auto">
         <div
           className={`${isMobileMenuOpen ? "hidden xl:flex" : "flex"} ${
             isMobile ? "hidden xl:flex" : "flex"
-          } flex-col items-center justify-start w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-white overflow-auto`}
+          } flex-col items-center justify-start w-[15%] h-full p-2 gap-2 rounded-2xl bg-white overflow-auto`}
         >
           {renderSidebarMenu()}
         </div>
-        <div className="flex flex-col items-center justify-start w-full xl:w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-default overflow-auto">
+        <div className="flex flex-col items-center justify-start w-full xl:w-[85%] h-full p-2 gap-2 rounded-3xl bg-default overflow-auto">
           {children}
         </div>
       </div>

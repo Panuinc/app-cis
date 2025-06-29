@@ -20,6 +20,12 @@ body {
   box-shadow: none;
 }
 
+svg.lucide {
+  width: 18px;
+  height: 18px;
+  color: #21212d;
+}
+
 /* ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
