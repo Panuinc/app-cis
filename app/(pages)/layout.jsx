@@ -36,8 +36,6 @@ export default function PagesLayout({ children }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (!isClient) return null;
-
   const menuData = [
     {
       key: "dashboard",
@@ -134,6 +132,8 @@ export default function PagesLayout({ children }) {
         </div>
       );
     });
+
+  if (!isClient) return null;
 
   return (
     <div className="flex flex-col items-center justify-start w-full h-full bg-default">
