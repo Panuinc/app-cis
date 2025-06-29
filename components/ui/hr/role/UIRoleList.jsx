@@ -236,7 +236,7 @@ export default function UIRoleList() {
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col p-2 gap-4">
         <div className="flex justify-between gap-3 items-end">
           <Input
             isClearable
@@ -249,10 +249,10 @@ export default function UIRoleList() {
           />
           <div className="flex gap-3">
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
+              <DropdownTrigger>
                 <Button
                   color="default"
-                  className="flex items-center justify-center h-full p-3 gap-2"
+                  className="hidden sm:flex items-center justify-center h-full p-3 gap-2"
                   endContent={<ChevronDown />}
                 >
                   Status
@@ -274,10 +274,10 @@ export default function UIRoleList() {
               </DropdownMenu>
             </Dropdown>
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
+              <DropdownTrigger>
                 <Button
                   color="default"
-                  className="flex items-center justify-center h-full p-3 gap-2"
+                  className="hidden sm:flex items-center justify-center h-full p-3 gap-2"
                   endContent={<ChevronDown />}
                 >
                   Columns

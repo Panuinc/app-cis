@@ -192,7 +192,6 @@ export default function PagesLayout({ children }) {
             <div className="flex items-center justify-center w-full h-full p-2 gap-2 bg-default rounded-full">
               <Input
                 name="search"
-                type="text"
                 placeholder="Search.."
                 variant="faded"
                 color="secondary"
