@@ -17,12 +17,14 @@ import {
   User,
   Menu,
   X,
+  Computer,
 } from "lucide-react";
 
 export default function PagesLayout({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [openMenus, setOpenMenus] = useState({});
 
   useEffect(() => {
     setIsClient(true);
@@ -35,6 +37,103 @@ export default function PagesLayout({ children }) {
   }, []);
 
   if (!isClient) return null;
+
+  const menuData = [
+    {
+      key: "dashboard",
+      icon: <LayoutDashboard />,
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      key: "hr",
+      icon: <User />,
+      label: "HR",
+      children: [
+        { label: "Role", href: "/hr/role" },
+        { label: "Branch", href: "/hr/branch" },
+      ],
+    },
+    {
+      key: "it",
+      icon: <Computer />,
+      label: "IT",
+      children: [
+        { label: "Back Up", href: "/it/backup" },
+        { label: "Repair", href: "/it/repair" },
+      ],
+    },
+    {
+      key: "logout",
+      icon: <Key />,
+      label: "Logout",
+      href: "/logout",
+    },
+  ];
+
+  const renderSidebarMenu = () =>
+    menuData.map((menu, index) => {
+      const isOpen = openMenus[menu.key];
+
+      const toggleMenu = () => {
+        setOpenMenus((prev) => ({
+          ...prev,
+          [menu.key]: !prev[menu.key],
+        }));
+      };
+
+      const MenuWrapper = ({ children, href }) =>
+        href ? (
+          <Link href={href} className="w-full">
+            {children}
+          </Link>
+        ) : (
+          <div className="w-full">{children}</div>
+        );
+
+      return (
+        <div key={index} className="w-full flex flex-col items-center gap-2">
+          <MenuWrapper href={menu.href}>
+            <div
+              className={`flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed ${
+                menu.children ? "cursor-pointer" : ""
+              }`}
+              onClick={menu.children ? toggleMenu : undefined}
+            >
+              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+                {menu.icon}
+              </div>
+              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+                {menu.label}
+              </div>
+              {menu.children && (
+                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default">
+                  <ChevronDown
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </div>
+              )}
+            </div>
+          </MenuWrapper>
+
+          {menu.children && isOpen && (
+            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
+              {menu.children.map((child, cIdx) => (
+                <Link
+                  key={cIdx}
+                  href={child.href}
+                  className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed"
+                >
+                  {child.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    });
 
   return (
     <div className="flex flex-col items-center justify-start w-full h-full bg-default">
@@ -71,15 +170,13 @@ export default function PagesLayout({ children }) {
           <div className="flex flex-row items-center justify-center w-full h-[68px] p-2 gap-2">
             <div className="flex items-center justify-center w-full h-full p-2 gap-2 bg-default rounded-full">
               <Input
-                name="email"
+                name="search"
                 type="text"
                 placeholder="Search.."
                 variant="faded"
                 color="secondary"
                 radius="full"
                 startContent={<Search />}
-                isClearable
-                isRequired
               />
             </div>
             <div className="flex items-center justify-center aspect-square h-full p-2 gap-2 bg-default rounded-full">
@@ -171,45 +268,7 @@ export default function PagesLayout({ children }) {
             </div>
 
             <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed bg-white">
-              <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
-                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-                  <LayoutDashboard />
-                </div>
-                <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                  Dashboard
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center justify-center w-full gap-2">
-                <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                  <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-                    <User />
-                  </div>
-                  <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                    Human Resource
-                  </div>
-                  <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default ">
-                    <ChevronDown />
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
-                  <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                    Role
-                  </div>
-                  <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                    Branch
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
-                <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-                  <Key />
-                </div>
-                <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                  Logout
-                </div>
-              </div>
+              {renderSidebarMenu()}
             </div>
           </div>
         </div>
@@ -219,47 +278,9 @@ export default function PagesLayout({ children }) {
         <div
           className={`${isMobileMenuOpen ? "hidden xl:flex" : "flex"} ${
             isMobile ? "hidden xl:flex" : "flex"
-          } flex-col items-center justify-between w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-white overflow-auto`}
+          } flex-col items-center justify-start w-[20%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-white overflow-auto`}
         >
-          <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
-            <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-              <LayoutDashboard />
-            </div>
-            <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-              Dashboard
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center justify-center w-full gap-2">
-            <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-                <User />
-              </div>
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                Human Resource
-              </div>
-              <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed rounded-full bg-default ">
-                <ChevronDown />
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                Role
-              </div>
-              <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-                Branch
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
-            <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
-              <Key />
-            </div>
-            <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-              Logout
-            </div>
-          </div>
+          {renderSidebarMenu()}
         </div>
         <div className="flex flex-col items-center justify-start w-full xl:w-[80%] h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl bg-default overflow-auto">
           {children}
