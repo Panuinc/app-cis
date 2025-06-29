@@ -26,7 +26,7 @@ svg.lucide {
   color: #21212d;
 }
 
-/* ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-} */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}

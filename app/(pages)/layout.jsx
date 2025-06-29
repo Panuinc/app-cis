@@ -303,7 +303,7 @@ export default function PagesLayout({ children }) {
         >
           {renderSidebarMenu()}
         </div>
-        <div className="flex flex-col items-center justify-start w-full xl:w-[85%] h-full p-2 gap-2 rounded-3xl bg-default overflow-auto">
+        <div className="flex flex-col items-center justify-start w-full xl:w-[85%] h-full p-4 gap-2 rounded-3xl bg-default overflow-auto">
           {children}
         </div>
       </div>

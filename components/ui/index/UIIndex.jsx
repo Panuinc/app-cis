@@ -6,9 +6,9 @@ import { Input, Button } from "@heroui/react";
 export default function UIIndex() {
   return (
     <>
-      <div className="flex flex-row items-center justify-center w-full xl:w-6/12 p-2 gap-2 border-2 border-dark border-dashed bg-white shadow-md rounded-3xl">
-        <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-4 border-2 border-dark border-dashed">
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+      <div className="flex flex-row items-center justify-center w-full xl:w-6/12 p-2 gap-2 bg-white shadow-md rounded-3xl">
+        <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-4">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             <Image
               src="/logoCompany/com-1.png"
               alt="mascot-1"
@@ -16,10 +16,10 @@ export default function UIIndex() {
               height={50}
             />
           </div>
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             Welcome To Channakorn Internal System
           </div>
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             <Input
               name="email"
               type="text"
@@ -36,7 +36,7 @@ export default function UIIndex() {
               // errorMessage={errors.roleName}
             />
           </div>
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             <Input
               name="Password"
               type="password"
@@ -53,7 +53,7 @@ export default function UIIndex() {
               // errorMessage={errors.roleName}
             />
           </div>
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             <Button
               type="submit"
               color="primary"
@@ -63,8 +63,8 @@ export default function UIIndex() {
             </Button>
           </div>
         </div>
-        <div className="xl:flex hidden flex-col items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed rounded-2xl">
-          <div className="flex items-center justify-center w-full min-h-96 p-2 gap-2 border-2 border-dark border-dashed bg-default rounded-tl-xl rounded-bl-[60px] rounded-tr-xl rounded-br-xl">
+        <div className="xl:flex hidden flex-col items-center justify-center w-full h-full p-2 gap-2 rounded-2xl">
+          <div className="flex items-center justify-center w-full min-h-96 p-2 gap-2 bg-default rounded-tl-xl rounded-bl-[60px] rounded-tr-xl rounded-br-xl">
             <Image
               src="/mascot/mascot-1.png"
               alt="mascot-1"
