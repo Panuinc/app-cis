@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 export default function PagesLayout({ children }) {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -36,6 +37,16 @@ export default function PagesLayout({ children }) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const defaultOpenMenus = {};
+    menuData.forEach((menu) => {
+      if (menu.children?.some((child) => pathname.startsWith(child.href))) {
+        defaultOpenMenus[menu.key] = true;
+      }
+    });
+    setOpenMenus(defaultOpenMenus);
+  }, [pathname]);
 
   const menuData = [
     {
@@ -69,8 +80,6 @@ export default function PagesLayout({ children }) {
       href: "/logout",
     },
   ];
-
-  const pathname = usePathname();
 
   const renderSidebarMenu = () =>
     menuData.map((menu, index) => {
@@ -131,7 +140,7 @@ export default function PagesLayout({ children }) {
                   <Link
                     key={cIdx}
                     href={child.href}
-                    className={`flex items-center justify-start w-full h-full p-4 gap-2 border-2 border-dark border-dashed ${
+                    className={`flex items-center justify-start w-full h-full p-3 gap-2 border-2 border-dark border-dashed ${
                       isChildActive ? "bg-default rounded-full" : ""
                     }`}
                   >
