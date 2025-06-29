@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@heroui/react";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import {
   Bell,
   Briefcase,
   Building,
   CalendarHeart,
   ChevronDown,
+  Computer,
   Key,
   LayoutDashboard,
   MessageCircleMore,
@@ -17,7 +19,6 @@ import {
   User,
   Menu,
   X,
-  Computer,
 } from "lucide-react";
 
 export default function PagesLayout({ children }) {
@@ -69,6 +70,8 @@ export default function PagesLayout({ children }) {
     },
   ];
 
+  const pathname = usePathname();
+
   const renderSidebarMenu = () =>
     menuData.map((menu, index) => {
       const isOpen = openMenus[menu.key];
@@ -89,13 +92,17 @@ export default function PagesLayout({ children }) {
           <div className="w-full">{children}</div>
         );
 
+      const isActive =
+        (menu.href && pathname.startsWith(menu.href)) ||
+        menu.children?.some((child) => pathname.startsWith(child.href));
+
       return (
         <div key={index} className="w-full flex flex-col items-center gap-2">
           <MenuWrapper href={menu.href}>
             <div
               className={`flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed ${
                 menu.children ? "cursor-pointer" : ""
-              }`}
+              } ${isActive ? "bg-default rounded-full" : ""}`}
               onClick={menu.children ? toggleMenu : undefined}
             >
               <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
@@ -117,16 +124,21 @@ export default function PagesLayout({ children }) {
           </MenuWrapper>
 
           {menu.children && isOpen && (
-            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-dark">
-              {menu.children.map((child, cIdx) => (
-                <Link
-                  key={cIdx}
-                  href={child.href}
-                  className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed"
-                >
-                  {child.label}
-                </Link>
-              ))}
+            <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-2 border-l-2 border-default">
+              {menu.children.map((child, cIdx) => {
+                const isChildActive = pathname.startsWith(child.href);
+                return (
+                  <Link
+                    key={cIdx}
+                    href={child.href}
+                    className={`flex items-center justify-start w-full h-full p-4 gap-2 border-2 border-dark border-dashed ${
+                      isChildActive ? "bg-default rounded-full" : ""
+                    }`}
+                  >
+                    {child.label}
+                  </Link>
+                );
+              })}
             </div>
           )}
         </div>
