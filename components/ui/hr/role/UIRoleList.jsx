@@ -68,6 +68,36 @@ export const users = [
     avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
     email: "william.howard@example.com",
   },
+  {
+    id: 4,
+    name: "William Howard",
+    role: "C.M.",
+    team: "Marketing",
+    status: "vacation",
+    age: "28",
+    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
+    email: "william.howard@example.com",
+  },
+  {
+    id: 5,
+    name: "William Howard",
+    role: "C.M.",
+    team: "Marketing",
+    status: "vacation",
+    age: "28",
+    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
+    email: "william.howard@example.com",
+  },
+  {
+    id: 6,
+    name: "William Howard",
+    role: "C.M.",
+    team: "Marketing",
+    status: "vacation",
+    age: "28",
+    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
+    email: "william.howard@example.com",
+  },
 ];
 
 export function capitalize(s) {
@@ -236,23 +266,24 @@ export default function UIRoleList() {
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col p-2 gap-4">
-        <div className="flex justify-between gap-3 items-end">
-          <Input
-            isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
-            startContent={<Search />}
-            value={filterValue}
-            onClear={() => onClear()}
-            onValueChange={onSearchChange}
-          />
-          <div className="flex gap-3">
+      <div className="flex flex-col items-center justify-center w-full gap-2">
+        <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+            <Input
+              isClearable
+              placeholder="Search by name..."
+              startContent={<Search />}
+              value={filterValue}
+              onClear={() => onClear()}
+              onValueChange={onSearchChange}
+            />
+          </div>
+          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
             <Dropdown>
               <DropdownTrigger>
                 <Button
                   color="default"
-                  className="hidden sm:flex items-center justify-center h-full p-3 gap-2"
+                  className="flex items-center justify-center w-full h-full p-3 gap-2"
                   endContent={<ChevronDown />}
                 >
                   Status
@@ -273,11 +304,13 @@ export default function UIRoleList() {
                 ))}
               </DropdownMenu>
             </Dropdown>
+          </div>
+          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
             <Dropdown>
               <DropdownTrigger>
                 <Button
                   color="default"
-                  className="hidden sm:flex items-center justify-center h-full p-3 gap-2"
+                  className="flex items-center justify-center w-full h-full p-3 gap-2"
                   endContent={<ChevronDown />}
                 >
                   Columns
@@ -298,30 +331,32 @@ export default function UIRoleList() {
                 ))}
               </DropdownMenu>
             </Dropdown>
+          </div>
+          <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
             <Button
               color="primary"
-              className="flex items-center justify-center h-full p-3 gap-2"
+              className="flex items-center justify-center w-full h-full p-3 gap-2"
               endContent={<Plus />}
             >
               Add New
             </Button>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
+        <div className="flex flex-row items-center justify-between w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
             Total {users.length} users
-          </span>
-          <label className="flex items-center text-default-400 text-small">
+          </div>
+          <div className="flex items-center justify-end w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
             Rows per page:
             <select
-              className="bg-transparent outline-none text-default-400 text-small"
+              className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed"
               onChange={onRowsPerPageChange}
             >
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
             </select>
-          </label>
+          </div>
         </div>
       </div>
     );
@@ -337,26 +372,27 @@ export default function UIRoleList() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
-        <span className="w-[30%] text-small text-default-400">
+      <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
+        <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
           {selectedKeys === "all"
             ? "All items selected"
             : `${selectedKeys.size} of ${filteredItems.length} selected`}
-        </span>
+        </div>
         <Pagination
           isCompact
           showControls
           showShadow
           color="primary"
+          className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed"
           page={page}
           total={pages}
           onChange={setPage}
         />
-        <div className="hidden sm:flex w-[30%] justify-end gap-2">
+        <div className="xl:flex hidden items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
           <Button
             isDisabled={pages === 1}
             color="primary"
-            className="flex items-center justify-center h-full p-3 gap-2"
+            className="flex items-center justify-center w-full h-full p-3 gap-2"
             onPress={onPreviousPage}
           >
             Previous
@@ -364,7 +400,7 @@ export default function UIRoleList() {
           <Button
             isDisabled={pages === 1}
             color="primary"
-            className="flex items-center justify-center h-full p-3 gap-2"
+            className="flex items-center justify-center w-full h-full p-3 gap-2"
             onPress={onNextPage}
           >
             Next
@@ -377,7 +413,7 @@ export default function UIRoleList() {
   return (
     <>
       <Header Header="Role List" />
-      <div className="flex flex-col items-center justify-start w-full h-full p-2 gap-2 bg-white rounded-2xl overflow-auto">
+      <div className="flex flex-col items-center justify-start w-full h-full p-2 gap-2 bg-white border-2 border-dark border-dashed rounded-2xl overflow-auto">
         <Table
           isHeaderSticky
           shadow="none"
@@ -385,7 +421,7 @@ export default function UIRoleList() {
           bottomContent={bottomContent}
           bottomContentPlacement="outside"
           classNames={{
-            wrapper: "max-h-[382px]",
+            wrapper: "w-full h-full border-2 border-dark border-dashed",
           }}
           selectedKeys={selectedKeys}
           selectionMode="multiple"
