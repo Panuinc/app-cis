@@ -62,6 +62,10 @@ export default function PagesLayout({ children }) {
       children: [
         { label: "Role", href: "/hr/role" },
         { label: "Branch", href: "/hr/branch" },
+        { label: "Division", href: "/hr/division" },
+        { label: "Department", href: "/hr/department" },
+        { label: "Position", href: "/hr/position" },
+        { label: "Employee", href: "/hr/employee" },
       ],
     },
     {
