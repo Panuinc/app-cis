@@ -26,9 +26,9 @@ export default function UIIndex() {
               type="text"
               label="Username"
               labelPlacement="outside"
-              placeholder="xxx xxx"
+              placeholder="Please Enter Data"
               variant="bordered"
-              color="secondary"
+              color="default"
               isClearable
               isRequired
               // onChange={handleChange}
@@ -43,9 +43,9 @@ export default function UIIndex() {
               type="password"
               label="Password"
               labelPlacement="outside"
-              placeholder="xxx xxx"
+              placeholder="Please Enter Data"
               variant="bordered"
-              color="secondary"
+              color="default"
               isClearable
               isRequired
               // onChange={handleChange}

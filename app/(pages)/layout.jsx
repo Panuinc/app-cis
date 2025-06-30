@@ -199,7 +199,7 @@ export default function PagesLayout({ children }) {
                 name="search"
                 placeholder="Search.."
                 variant="faded"
-                color="secondary"
+                color="default"
                 radius="full"
                 startContent={<Search />}
               />

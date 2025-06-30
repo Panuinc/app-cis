@@ -1,5 +1,4 @@
 "use client";
-import Header from "@/components/other/Header";
 import React from "react";
 import Link from "next/link";
 import {
@@ -383,7 +382,6 @@ export default function UIRoleList() {
 
   return (
     <>
-      <Header Header="Role List" />
       <div className="flex flex-col items-center justify-between w-full h-full p-2 gap-2 bg-white rounded-2xl shadow-md overflow-auto">
         <Table
           isHeaderSticky
