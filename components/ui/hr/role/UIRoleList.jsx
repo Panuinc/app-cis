@@ -1,6 +1,7 @@
 "use client";
 import Header from "@/components/other/Header";
 import React from "react";
+import Link from "next/link";
 import {
   Table,
   TableHeader,
@@ -305,11 +306,12 @@ export default function UIRoleList() {
           </div>
           <div className="flex items-center justify-center h-full p-2 gap-2">
             <Button
+              asChild
               color="primary"
               className="flex items-center justify-center w-full h-full p-3 gap-2"
               endContent={<Plus />}
             >
-              Add New
+              <Link href="/hr/role/create">Add New</Link>
             </Button>
           </div>
         </div>
