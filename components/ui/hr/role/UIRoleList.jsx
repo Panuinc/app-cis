@@ -43,7 +43,23 @@ const statusColorMap = {
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "creator", "status", "actions"];
 
-export default function UIRoleList() {
+export default function UIRoleList({ roles: rawRoles, isLoading }) {
+  const roles = React.useMemo(() => {
+    return rawRoles.map((r) => ({
+      id: r.roleId,
+      name: r.roleName,
+      creator: `${r.RoleCreateBy?.empFirstNameTH || ""} ${
+        r.RoleCreateBy?.empLastNameTH || ""
+      }`.trim(),
+      createAt: r.roleCreateAt || null,
+      updateBy: `${r.RoleUpdateBy?.empFirstNameTH || "-"} ${
+        r.RoleUpdateBy?.empLastNameTH || ""
+      }`.trim(),
+      updateAt: r.roleUpdateAt || null,
+      status: r.roleStatus?.toLowerCase() || "active",
+    }));
+  }, [rawRoles]);
+
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
@@ -56,47 +72,8 @@ export default function UIRoleList() {
     direction: "ascending",
   });
   const [page, setPage] = React.useState(1);
-  const [users, setUsers] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   const hasSearchFilter = Boolean(filterValue);
-
-  React.useEffect(() => {
-    async function fetchRoles() {
-      try {
-        const res = await fetch("/api/hr/role", {
-          headers: {
-            "secret-token": process.env.NEXT_PUBLIC_SECRET_TOKEN || "",
-          },
-        });
-        const json = await res.json();
-        if (res.ok && json.role) {
-          const mapped = json.role.map((r) => ({
-            id: r.roleId,
-            name: r.roleName,
-            creator: `${r.RoleCreateBy?.empFirstNameTH || ""} ${
-              r.RoleCreateBy?.empLastNameTH || ""
-            }`.trim(),
-            createAt: r.roleCreateAt || null,
-            updateBy: `${r.RoleUpdateBy?.empFirstNameTH || "-"} ${
-              r.RoleUpdateBy?.empLastNameTH || ""
-            }`.trim(),
-            updateAt: r.roleUpdateAt || null,
-            status: r.roleStatus?.toLowerCase() || "active",
-          }));
-          setUsers(mapped);
-        } else {
-          console.error(json.error || "Failed to load roles");
-        }
-      } catch (err) {
-        console.error("Error loading roles", err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchRoles();
-  }, []);
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
@@ -106,7 +83,7 @@ export default function UIRoleList() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...roles];
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
         user.name.toLowerCase().includes(filterValue.toLowerCase())
@@ -121,7 +98,7 @@ export default function UIRoleList() {
       );
     }
     return filteredUsers;
-  }, [users, filterValue, statusFilter]);
+  }, [roles, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage) || 1;
 
@@ -144,7 +121,7 @@ export default function UIRoleList() {
     d
       ? new Date(d).toLocaleString("th-TH", {
           day: "2-digit",
-          month: "2-digit",
+          month: "long",
           year: "numeric",
           hour: "2-digit",
           minute: "2-digit",
@@ -161,7 +138,7 @@ export default function UIRoleList() {
         return (
           <div className="flex flex-col text-sm leading-snug">
             <div>
-              <span className="font-[600]">Created By:</span>
+              <span>Created By:</span>
               <br />
               <div className="pl-4">
                 {user.creator || "-"} ({formatDateTime(user.createAt)})
@@ -169,7 +146,7 @@ export default function UIRoleList() {
             </div>
 
             <div>
-              <span className="font-[600]">Updated By:</span>
+              <span>Updated By:</span>
               <br />
               <div className="pl-4">
                 {user.updateBy || "-"} ({formatDateTime(user.updateAt)})
@@ -201,11 +178,14 @@ export default function UIRoleList() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem key="edit">Edit</DropdownItem>
+                <DropdownItem key="edit" as={Link} href={`/hr/role/${user.id}`}>
+                  Edit
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
         );
+
       default:
         return cellValue;
     }
@@ -305,7 +285,7 @@ export default function UIRoleList() {
       </div>
       <div className="flex flex-row items-center justify-between w-full h-full p-2 gap-2">
         <div className="flex items-center justify-start w-full h-full p-2 gap-2">
-          Total {users.length} users
+          Total {roles.length} roles
         </div>
         <div className="flex items-center justify-end w-full h-full p-2 gap-2">
           Rows per page:
@@ -388,7 +368,7 @@ export default function UIRoleList() {
         ) : (
           <TableBody emptyContent={"No Roles found"} items={sortedItems}>
             {(item) => (
-              <TableRow key={item.id}>
+              <TableRow key={item.id} className="border-b-2 border-default">
                 {(columnKey) => (
                   <TableCell>{renderCell(item, columnKey)}</TableCell>
                 )}

@@ -2,10 +2,22 @@
 import React from "react";
 import { Input, Button, Select, SelectItem } from "@heroui/react";
 
-export default function UIRoleForm({ isUpdate }) {
+export default function UIRoleForm({
+  formRef,
+  onSubmit,
+  errors,
+  formData,
+  handleInputChange,
+  isUpdate,
+  operatedBy,
+}) {
   return (
     <>
-      <div className="flex flex-col items-center justify-start w-full p-2 gap-2 bg-white rounded-2xl shadow-md overflow-auto">
+      <form
+        ref={formRef}
+        onSubmit={onSubmit}
+        className="flex flex-col items-center justify-start w-full p-2 gap-2 bg-white rounded-2xl shadow-md overflow-auto"
+      >
         <div className="flex flex-col xl:flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
           <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
             <Input
@@ -18,10 +30,10 @@ export default function UIRoleForm({ isUpdate }) {
               color="default"
               isClearable
               isRequired
-              // onChange={handleChange}
-              // validate={(value) => (!value.includes("@") ? "อีเมลไม่ถูกต้อง" : true)}
-              // value={empUserCredential}
-              // errorMessage={errors.roleName}
+              onChange={handleInputChange("roleName")}
+              value={formData.roleName || ""}
+              errorMessage={errors.roleName}
+              isInvalid={!!errors.roleName}
             />
           </div>
         </div>
@@ -36,11 +48,11 @@ export default function UIRoleForm({ isUpdate }) {
                 variant="bordered"
                 color="default"
                 isRequired
-                // value={formData.roleStatus || ""}
-                // selectedKeys={formData.roleStatus ? [formData.roleStatus] : []}
-                // onChange={handleInputChange("roleStatus")}
-                // isInvalid={!!errors.roleStatus}
-                // errorMessage={errors.roleStatus}
+                selectedKeys={formData.roleStatus ? [formData.roleStatus] : []}
+                onChange={handleInputChange("roleStatus")}
+                value={formData.roleStatus || ""}
+                errorMessage={errors.roleStatus}
+                isInvalid={!!errors.roleStatus}
               >
                 <SelectItem key="Active" value="Active">
                   Active
@@ -65,10 +77,7 @@ export default function UIRoleForm({ isUpdate }) {
               color="default"
               isClearable
               isReadOnly
-              // onChange={handleChange}
-              // validate={(value) => (!value.includes("@") ? "อีเมลไม่ถูกต้อง" : true)}
-              // value={empUserCredential}
-              // errorMessage={errors.roleName}
+              value={operatedBy}
             />
           </div>
         </div>
@@ -83,7 +92,7 @@ export default function UIRoleForm({ isUpdate }) {
             </Button>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
