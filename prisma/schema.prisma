@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Citizen {
+  Thai       @map("Thai")
+  Cambodian  @map("Cambodian")
+  Lao        @map("Lao")
+  Burmese    @map("Burmese")
+  Vietnamese @map("Vietnamese")
+}
+
+enum Gender {
+  Male   @map("Male")
+  FeMale @map("FeMale")
+  Other  @map("Other")
+}
+
+enum Status {
+  Active
+  InActive
+}
+
+model Emp {
+  empId          Int       @id @default(autoincrement())
+  empFirstNameTH String    @db.VarChar(255)
+  empLastNameTH  String    @db.VarChar(255)
+  empFirstNameEN String    @db.VarChar(255)
+  empLastNameEN  String    @db.VarChar(255)
+  empEmail       String    @db.VarChar(255)
+  empTel         String    @db.VarChar(255)
+  empIdCard      String    @db.VarChar(255)
+  empBirthday    DateTime
+  empCitizen     Citizen
+  empGender      Gender
+  empStatus      Status    @default(Active)
+  empCreateBy    Int
+  empCreateAt    DateTime  @default(now()) @db.Timestamp()
+  empUpdateBy    Int?
+  empUpdateAt    DateTime?
+
+  EmpCreateBy Emp? @relation("CreateEmpBy", fields: [empCreateBy], references: [empId])
+  EmpUpdateBy Emp? @relation("UpdateEmpBy", fields: [empUpdateBy], references: [empId])
+
+  createEmp Emp[] @relation("CreateEmpBy")
+  updateEmp Emp[] @relation("UpdateEmpBy")
+
+  createdRole Role[] @relation("RoleCreateBy")
+  updatedRole Role[] @relation("RoleUpdateBy")
+
+  @@index([empCreateBy])
+  @@index([empUpdateBy])
+}
+
+model Role {
+  roleId       Int       @id @default(autoincrement())
+  roleName     String    @db.VarChar(255)
+  roleStatus   Status    @default(Active)
+  roleCreateBy Int
+  roleCreateAt DateTime  @default(now()) @db.Timestamp()
+  roleUpdateBy Int?
+  roleUpdateAt DateTime?
+
+  RoleCreateBy Emp? @relation("RoleCreateBy", fields: [roleCreateBy], references: [empId])
+  RoleUpdateBy Emp? @relation("RoleUpdateBy", fields: [roleUpdateBy], references: [empId])
+
+  @@index([roleCreateBy])
+  @@index([roleUpdateBy])
+}
