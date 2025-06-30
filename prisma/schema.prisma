@@ -44,14 +44,14 @@ model Emp {
   empUpdateBy    Int?
   empUpdateAt    DateTime?
 
-  EmpCreateBy Emp? @relation("CreateEmpBy", fields: [empCreateBy], references: [empId])
-  EmpUpdateBy Emp? @relation("UpdateEmpBy", fields: [empUpdateBy], references: [empId])
+  EmpCreateBy Emp? @relation("EmpCreateBy", fields: [empCreateBy], references: [empId])
+  EmpUpdateBy Emp? @relation("EmpUpdateBy", fields: [empUpdateBy], references: [empId])
 
-  createEmp Emp[] @relation("CreateEmpBy")
-  updateEmp Emp[] @relation("UpdateEmpBy")
+  EmpCreated Emp[] @relation("EmpCreateBy")
+  EmpUpdated Emp[] @relation("EmpUpdateBy")
 
-  createdRole Role[] @relation("RoleCreateBy")
-  updatedRole Role[] @relation("RoleUpdateBy")
+  RoleCreatedBy Role[] @relation("RoleRoleCreateBy")
+  RoleUpdatedBy Role[] @relation("RoleRoleUpdateBy")
 
   @@index([empCreateBy])
   @@index([empUpdateBy])
@@ -66,8 +66,8 @@ model Role {
   roleUpdateBy Int?
   roleUpdateAt DateTime?
 
-  RoleCreateBy Emp? @relation("RoleCreateBy", fields: [roleCreateBy], references: [empId])
-  RoleUpdateBy Emp? @relation("RoleUpdateBy", fields: [roleUpdateBy], references: [empId])
+  RoleCreateBy Emp? @relation("RoleRoleCreateBy", fields: [roleCreateBy], references: [empId])
+  RoleUpdateBy Emp? @relation("RoleRoleUpdateBy", fields: [roleUpdateBy], references: [empId])
 
   @@index([roleCreateBy])
   @@index([roleUpdateBy])

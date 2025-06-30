@@ -238,10 +238,11 @@ export default function UIRoleList() {
     return (
       <div className="flex flex-col items-center justify-center w-full gap-2">
         <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2">
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
+          <div className="flex items-center justify-start w-full h-full p-2 gap-2">
             <Input
               isClearable
               placeholder="Search by name..."
+              className="w-8/12"
               startContent={<Search />}
               value={filterValue}
               onClear={() => onClear()}
@@ -358,11 +359,11 @@ export default function UIRoleList() {
           total={pages}
           onChange={setPage}
         />
-        <div className="xl:flex hidden items-center justify-center w-full h-full p-2 gap-2">
+        <div className="xl:flex hidden items-center justify-end w-full h-full p-2 gap-2">
           <Button
             isDisabled={pages === 1}
             color="primary"
-            className="flex items-center justify-center w-full h-full p-3 gap-2"
+            className="flex items-center justify-center h-full p-3 gap-2"
             onPress={onPreviousPage}
           >
             Previous
@@ -370,7 +371,7 @@ export default function UIRoleList() {
           <Button
             isDisabled={pages === 1}
             color="primary"
-            className="flex items-center justify-center w-full h-full p-3 gap-2"
+            className="flex items-center justify-center h-full p-3 gap-2"
             onPress={onNextPage}
           >
             Next
