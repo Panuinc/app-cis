@@ -161,13 +161,19 @@ export default function UIRoleList() {
         return (
           <div className="flex flex-col text-sm leading-snug">
             <div>
-              <span className="font-[600]">Created By:</span>{" "}
-              {user.creator || "-"} ({formatDateTime(user.createAt)})
+              <span className="font-[600]">Created By:</span>
+              <br />
+              <div className="pl-4">
+                {user.creator || "-"} ({formatDateTime(user.createAt)})
+              </div>
             </div>
 
             <div>
-              <span className="font-[600]">Updated:</span>{" "}
-              {user.updateBy || "-"} ({formatDateTime(user.updateAt)})
+              <span className="font-[600]">Updated By:</span>
+              <br />
+              <div className="pl-4">
+                {user.updateBy || "-"} ({formatDateTime(user.updateAt)})
+              </div>
             </div>
           </div>
         );
