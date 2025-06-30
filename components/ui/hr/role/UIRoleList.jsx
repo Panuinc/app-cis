@@ -35,7 +35,6 @@ export const columns = [
 export const statusOptions = [
   { name: "Active", uid: "active" },
   { name: "Paused", uid: "paused" },
-  { name: "Vacation", uid: "vacation" },
 ];
 
 export const users = [
@@ -64,7 +63,7 @@ export const users = [
     name: "William Howard",
     role: "C.M.",
     team: "Marketing",
-    status: "vacation",
+    status: "paused",
     age: "28",
     avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
     email: "william.howard@example.com",
@@ -78,7 +77,6 @@ export function capitalize(s) {
 const statusColorMap = {
   active: "success",
   paused: "danger",
-  vacation: "warning",
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
