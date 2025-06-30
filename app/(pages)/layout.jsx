@@ -170,6 +170,7 @@ export default function PagesLayout({ children }) {
               alt="mascot-1"
               width={75}
               height={75}
+              priority
             />
           </div>
           <div className="flex flex-col items-start justify-center xl:justify-start w-full h-full p-2">
@@ -215,8 +216,10 @@ export default function PagesLayout({ children }) {
                   src="/logoCompany/com-1.png"
                   alt="mascot-1"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}
                   className="rounded-full"
+                  priority
                 />
               </div>
               <div className="flex items-center justify-center w-full h-full p-2 gap-2">

@@ -68,36 +68,6 @@ export const users = [
     avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
     email: "william.howard@example.com",
   },
-  {
-    id: 4,
-    name: "William Howard",
-    role: "C.M.",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-  {
-    id: 5,
-    name: "William Howard",
-    role: "C.M.",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-  {
-    id: 6,
-    name: "William Howard",
-    role: "C.M.",
-    team: "Marketing",
-    status: "vacation",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
 ];
 
 export function capitalize(s) {
@@ -267,8 +237,8 @@ export default function UIRoleList() {
   const topContent = React.useMemo(() => {
     return (
       <div className="flex flex-col items-center justify-center w-full gap-2">
-        <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-          <div className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+        <div className="flex flex-row items-center justify-center w-full h-full p-2 gap-2">
+          <div className="flex items-center justify-center w-full h-full p-2 gap-2">
             <Input
               isClearable
               placeholder="Search by name..."
@@ -278,7 +248,7 @@ export default function UIRoleList() {
               onValueChange={onSearchChange}
             />
           </div>
-          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2">
             <Dropdown>
               <DropdownTrigger>
                 <Button
@@ -305,7 +275,7 @@ export default function UIRoleList() {
               </DropdownMenu>
             </Dropdown>
           </div>
-          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="xl:flex hidden items-center justify-center h-full p-2 gap-2">
             <Dropdown>
               <DropdownTrigger>
                 <Button
@@ -332,7 +302,7 @@ export default function UIRoleList() {
               </DropdownMenu>
             </Dropdown>
           </div>
-          <div className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-center h-full p-2 gap-2">
             <Button
               color="primary"
               className="flex items-center justify-center w-full h-full p-3 gap-2"
@@ -342,14 +312,14 @@ export default function UIRoleList() {
             </Button>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-between w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
-          <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+        <div className="flex flex-row items-center justify-between w-full h-full p-2 gap-2">
+          <div className="flex items-center justify-start w-full h-full p-2 gap-2">
             Total {users.length} users
           </div>
-          <div className="flex items-center justify-end w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+          <div className="flex items-center justify-end w-full h-full p-2 gap-2">
             Rows per page:
             <select
-              className="flex items-center justify-center h-full p-2 gap-2 border-2 border-dark border-dashed"
+              className="flex items-center justify-center h-full p-2 gap-2"
               onChange={onRowsPerPageChange}
             >
               <option value="5">5</option>
@@ -372,8 +342,8 @@ export default function UIRoleList() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="flex flex-row items-center justify-center w-full p-2 gap-2 border-2 border-dark border-dashed">
-        <div className="flex items-center justify-start w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+      <div className="flex flex-row items-center justify-center w-full p-2 gap-2">
+        <div className="flex items-center justify-start w-full h-full p-2 gap-2">
           {selectedKeys === "all"
             ? "All items selected"
             : `${selectedKeys.size} of ${filteredItems.length} selected`}
@@ -383,12 +353,12 @@ export default function UIRoleList() {
           showControls
           showShadow
           color="primary"
-          className="flex items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed"
+          className="flex items-center justify-center w-full h-full p-2 gap-2"
           page={page}
           total={pages}
           onChange={setPage}
         />
-        <div className="xl:flex hidden items-center justify-center w-full h-full p-2 gap-2 border-2 border-dark border-dashed">
+        <div className="xl:flex hidden items-center justify-center w-full h-full p-2 gap-2">
           <Button
             isDisabled={pages === 1}
             color="primary"
@@ -413,7 +383,7 @@ export default function UIRoleList() {
   return (
     <>
       <Header Header="Role List" />
-      <div className="flex flex-col items-center justify-start w-full h-full p-2 gap-2 bg-white border-2 border-dark border-dashed rounded-2xl overflow-auto">
+      <div className="flex flex-col items-center justify-between w-full h-full p-2 gap-2 bg-white rounded-2xl shadow-md overflow-auto">
         <Table
           isHeaderSticky
           shadow="none"
@@ -421,7 +391,7 @@ export default function UIRoleList() {
           bottomContent={bottomContent}
           bottomContentPlacement="outside"
           classNames={{
-            wrapper: "w-full h-full border-2 border-dark border-dashed",
+            wrapper: "w-full h-full",
           }}
           selectedKeys={selectedKeys}
           selectionMode="multiple"

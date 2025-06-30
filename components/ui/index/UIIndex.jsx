@@ -14,6 +14,7 @@ export default function UIIndex() {
               alt="mascot-1"
               width={50}
               height={50}
+              priority
             />
           </div>
           <div className="flex items-center justify-center w-full h-full p-2 gap-2">
@@ -70,6 +71,7 @@ export default function UIIndex() {
               alt="mascot-1"
               width={500}
               height={500}
+              priority
             />
           </div>
         </div>
