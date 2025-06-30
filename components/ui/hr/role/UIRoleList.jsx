@@ -36,39 +36,6 @@ export const statusOptions = [
   { name: "Paused", uid: "paused" },
 ];
 
-export const users = [
-  {
-    id: 1,
-    name: "Tony Reichert",
-    role: "CEO",
-    team: "Management",
-    status: "active",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "tony.reichert@example.com",
-  },
-  {
-    id: 2,
-    name: "Zoey Lang",
-    role: "Tech Lead",
-    team: "Development",
-    status: "paused",
-    age: "25",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    email: "zoey.lang@example.com",
-  },
-  {
-    id: 3,
-    name: "William Howard",
-    role: "C.M.",
-    team: "Marketing",
-    status: "paused",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-  },
-];
-
 export function capitalize(s) {
   return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
 }
@@ -76,6 +43,7 @@ export function capitalize(s) {
 const statusColorMap = {
   active: "success",
   paused: "danger",
+  inactive: "danger",
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
@@ -89,12 +57,48 @@ export default function UIRoleList() {
   const [statusFilter, setStatusFilter] = React.useState("all");
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState({
-    column: "age",
+    column: "id",
     direction: "ascending",
   });
   const [page, setPage] = React.useState(1);
+  const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const hasSearchFilter = Boolean(filterValue);
+
+  // 👇 ดึงข้อมูลจริง
+  React.useEffect(() => {
+    async function fetchRoles() {
+      try {
+        const res = await fetch("/api/hr/role", {
+          headers: {
+            "secret-token": process.env.NEXT_PUBLIC_SECRET_TOKEN || "",
+          },
+        });
+        const json = await res.json();
+        if (res.ok && json.role) {
+          const mapped = json.role.map((r) => ({
+            id: r.roleId,
+            name: r.roleName,
+            age: "N/A",
+            role: "N/A",
+            team: "N/A",
+            email: "N/A",
+            status: r.roleStatus?.toLowerCase() || "active",
+          }));
+          setUsers(mapped);
+        } else {
+          console.error(json.error || "Failed to load roles");
+        }
+      } catch (err) {
+        console.error("Error loading roles", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchRoles();
+  }, []);
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columns;
@@ -150,7 +154,7 @@ export default function UIRoleList() {
       case "name":
         return (
           <User
-            avatarProps={{ radius: "lg", src: user.avatar }}
+            avatarProps={{ radius: "lg", src: user.avatar || "" }}
             description={user.email}
             name={cellValue}
           >
@@ -202,15 +206,11 @@ export default function UIRoleList() {
   }, []);
 
   const onNextPage = React.useCallback(() => {
-    if (page < pages) {
-      setPage(page + 1);
-    }
+    if (page < pages) setPage(page + 1);
   }, [page, pages]);
 
   const onPreviousPage = React.useCallback(() => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
+    if (page > 1) setPage(page - 1);
   }, [page]);
 
   const onRowsPerPageChange = React.useCallback((e) => {

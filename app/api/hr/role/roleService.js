@@ -14,14 +14,6 @@ export class RoleService {
     });
   }
 
-  static async getRoleByName(roleName) {
-    return prisma.role.findFirst({ where: { roleName } });
-  }
-
-  static async createRole(data) {
-    return prisma.role.create({ data });
-  }
-
   static async getRoleById(roleId) {
     return prisma.role.findUnique({
       where: { roleId },
@@ -34,6 +26,16 @@ export class RoleService {
         },
       },
     });
+  }
+
+  static async getRoleByName(roleName) {
+    return prisma.role.findFirst({
+      where: { roleName: { equals: roleName, mode: "insensitive" } },
+    });
+  }
+
+  static async createRole(data) {
+    return prisma.role.create({ data });
   }
 
   static async updateRole(roleId, data) {
