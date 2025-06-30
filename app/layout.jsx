@@ -1,6 +1,7 @@
 import { Kanit, Nunito } from "next/font/google";
 import "@/style/globals.css";
 import { Providers } from "@/components/other/providers";
+import { SessionProvider } from "next-auth/react";
 
 const kanit = Kanit({
   subsets: ["latin"],
@@ -22,17 +23,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <Providers>
-      <html lang="en">
-        <head>
-          <link rel="icon" href="/logoCompany/com-1.png" />
-        </head>
-        <body className={`${nunito.variable} ${kanit.variable} antialiased`}>
-          <div className="flex items-center justify-center w-full h-screen gap-2">
-            {children}
-          </div>
-        </body>
-      </html>
-    </Providers>
+    <SessionProvider>
+      <Providers>
+        <html lang="en">
+          <head>
+            <link rel="icon" href="/logoCompany/com-1.png" />
+          </head>
+          <body className={`${nunito.variable} ${kanit.variable} antialiased`}>
+            <div className="flex items-center justify-center w-full h-screen gap-2">
+              {children}
+            </div>
+          </body>
+        </html>
+      </Providers>
+    </SessionProvider>
   );
 }
